@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse effect</title>
+    <style>
+        @font-face {
+            font-family: "roboto";
+            src: url(../fonts/Roboto-Regular.ttf);
+        }
+
+        body {
+            background-color: #1b1b25;
+            color: #ffffff;
+            text-align: center;
+            font-family: "roboto";
+
+        }
+
+        * {
+            cursor: none;
+        }
+
+        #roundmain {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            border-radius: 50px;
+
+        }
+
+        .round {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <h2>MOUSE EFFECT</h2>
+        <div id="roundmain"></div>
+    </div>
+
+    <script>
+        var x = document.getElementById("roundmain");
+        document.addEventListener("mousemove", movefnn)
+        function movefnn() {
+
+            var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+                '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+                '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+                '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+                '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+                '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+                '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+                '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+                '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+                '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+
+            var round = document.createElement("div")
+            round.setAttribute("class", "round")
+            var mx = event.clientX;
+            var my = event.clientY;
+
+            round.style.left = mx + "px";
+            round.style.top = my + "px";
+            var main = document.getElementById("main").appendChild(round);
+
+            x.style.left = mx + "px";
+            x.style.top = my + "px";
+            var per = (mx / 25)
+            var z = per.toFixed(0)
+
+            if (z >= 50) {
+                z = 0
+            }
+            console.log(z)
+            x.style.border = "3px solid" + colorArray[z] + ""
+            round.style.border = "3px solid" + colorArray[z] + ""
+
+            setTimeout(removefn, 150)
+            function removefn() {
+                round.remove()
+            }
+        }
+    </script>
+</body>
+
+</html>
